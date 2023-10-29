@@ -1,16 +1,39 @@
-import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as cdk from "@aws-cdk/core";
+import * as s3 from "@aws-cdk/aws-s3";
+import * as route53 from "@aws-cdk/aws-route53";
+import * as acm from "@aws-cdk/aws-certificatemanager";
+import * as cloudfront from "@aws-cdk/aws-cloudfront";
+import { Distribution, OriginAccessIdentity } from "@aws-cdk/aws-cloudfront";
+import { S3Origin } from "@aws-cdk/aws-cloudfront-origins";
+import { Bucket, BucketAccessControl } from "@aws-cdk/aws-s3";
+import { BucketDeployment, Source } from "@aws-cdk/aws-s3-deployment";
+import * as path from "path";
 
+const WEB_APP_DOMAIN = "voice-assistant.jackdo.dev";
 export class AiVoiceAssistantStack extends cdk.Stack {
-  constructor(scope: Construct, id: string, props?: cdk.StackProps) {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    // s3 bucket for holding the website
+    const bucket = new Bucket(this, "Bucket", {
+      accessControl: BucketAccessControl.PRIVATE
+    });
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'AiVoiceAssistantQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    //upload the app to the s3 bucket
+    new BucketDeployment(this, "BucketDeployment", {
+      destinationBucket: bucket,
+      sources: [Source.asset(path.resolve(__dirname, "../frontend/dist"))]
+    });
+
+    // create distribution for the bucket
+    const originAccessIdentity = new OriginAccessIdentity(this, "OriginAccessIdentity");
+    bucket.grantRead(originAccessIdentity);
+
+    new Distribution(this, "Distribution", {
+      defaultRootObject: "index.html",
+      defaultBehavior: {
+        origin: new S3Origin(bucket, { originAccessIdentity })
+      }
+    });
   }
 }
