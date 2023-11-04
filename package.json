@@ -1,34 +1,16 @@
 {
   "name": "ai-voice-assistant",
   "version": "0.1.0",
-  "bin": {
-    "ai-voice-assistant": "bin/ai-voice-assistant.js"
-  },
   "scripts": {
     "install:web": "cd frontend && npm install",
-    "build:web": "cd frontend && npm run build",
-    "deploy": "npm run cdk deploy",
-    "cdk": "cdk"
+    "build:web": "cd frontend && npm run build"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.1",
     "@types/node": "^20.1.7",
-    "aws-cdk": "^2.80.0",
-    "jest": "^29.5.0",
-    "source-map-support": "^0.5.21",
-    "ts-jest": "^29.1.0",
     "ts-node": "^10.9.1",
     "typescript": "~5.0.4"
   },
   "dependencies": {
-    "@aws-cdk/aws-certificatemanager": "^1.204.0",
-    "@aws-cdk/aws-cloudfront": "^1.204.0",
-    "@aws-cdk/aws-cloudfront-origins": "^1.204.0",
-    "@aws-cdk/aws-route53": "^1.204.0",
-    "@aws-cdk/aws-route53-targets": "^1.204.0",
-    "@aws-cdk/aws-s3": "^1.204.0",
-    "@aws-cdk/aws-s3-deployment": "^1.204.0",
-    "@aws-cdk/core": "^1.204.0",
-    "constructs": "^10.0.0"
+    "prettier": "^3.0.3"
   }
 }

@@ -1,14 +1,12 @@
-# Welcome to your CDK TypeScript project
+# AI voice assistant
 
-This is a blank project for CDK development with TypeScript.
+## Process
 
-The `cdk.json` file tells the CDK Toolkit how to execute your app.
+1. Frontend is built from React App to collect user's command from voice using `react-speech-recognition`
+2. The command will be forward to API Gateway then Lambda, which retrieve OPEN AI key from secrets manager and make call chatGPT model
+3. The answers will then be converted back to voice by leveraging AWS Polly `text-to-speech`
 
 ## Useful commands
 
-* `npm run build`   compile typescript to js
-* `npm run watch`   watch for changes and compile
-* `npm run test`    perform the jest unit tests
-* `cdk deploy`      deploy this stack to your default AWS account/region
-* `cdk diff`        compare deployed stack with current state
-* `cdk synth`       emits the synthesized CloudFormation template
+- `npm run install:web` install dependencies of React app
+- `npm run build:web` build the frontend dist folder
