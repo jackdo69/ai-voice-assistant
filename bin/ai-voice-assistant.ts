@@ -1,7 +1,12 @@
 #!/usr/bin/env node
 import "source-map-support/register";
-import * as cdk from "@aws-cdk/core";
+import { App } from "@aws-cdk/core";
 import { AiVoiceAssistantStack } from "../lib/ai-voice-assistant-stack";
 
-const app = new cdk.App();
-new AiVoiceAssistantStack(app, "AiVoiceAssistantStack", {});
+const app = new App();
+new AiVoiceAssistantStack(app, "AiVoiceAssistantStack", {
+  env: {
+    account: "683793928497",
+    region: "ap-southeast-2"
+  }
+});

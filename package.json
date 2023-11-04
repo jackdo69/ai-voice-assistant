@@ -5,9 +5,8 @@
     "ai-voice-assistant": "bin/ai-voice-assistant.js"
   },
   "scripts": {
-    "build": "tsc",
-    "watch": "tsc -w",
-    "test": "jest",
+    "build": "cd ./frontend && npm run build",
+    "deploy": "npm run cdk deploy",
     "cdk": "cdk"
   },
   "devDependencies": {
@@ -29,7 +28,6 @@
     "@aws-cdk/aws-s3": "^1.204.0",
     "@aws-cdk/aws-s3-deployment": "^1.204.0",
     "@aws-cdk/core": "^1.204.0",
-    "aws-cdk-lib": "2.80.0",
     "constructs": "^10.0.0"
   }
 }
