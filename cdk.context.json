@@ -1,9 +1,0 @@
-{
-  "acknowledged-issue-numbers": [
-    19836
-  ],
-  "hosted-zone:account=683793928497:domainName=jackdo.dev:region=ap-southeast-2": {
-    "Id": "/hostedzone/Z053571519XOWOZCUG6RD",
-    "Name": "jackdo.dev."
-  }
-}
