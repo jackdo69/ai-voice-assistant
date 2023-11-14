@@ -1,11 +1,5 @@
 import { SecretService } from "./secret.service";
-import {
-  OPEN_AI_KEY_SECRET_NAME,
-  OPEN_AI_MODEL,
-  OPEN_AI_ROLE,
-  OPEN_AI_SERVICE_URL,
-  OPEN_AI_URL
-} from "./constants";
+import { OPEN_AI_KEY_SECRET_NAME, OPEN_AI_MODEL, OPEN_AI_ROLE, OPEN_AI_SERVICE_URL, OPEN_AI_URL } from "./constants";
 import axios from "axios";
 
 export interface IOpenAiService {
@@ -24,7 +18,12 @@ export class OpenAiService implements IOpenAiService {
     const model = OPEN_AI_MODEL.GPT_35_TURBO;
     const role = OPEN_AI_ROLE.SYSTEM;
 
-    return await this.getChatCompletions({ apiKey, content: prompt, model, role });
+    return await this.getChatCompletions({
+      apiKey,
+      content: `${prompt}. Give the answer in less than 30 words.`,
+      model,
+      role
+    });
   }
 
   private async getChatCompletions({
