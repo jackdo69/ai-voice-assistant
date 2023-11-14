@@ -10,3 +10,4 @@
 
 - `npm run install:web` install dependencies of React app
 - `npm run build:web` build the frontend dist folder
+- `npm run deploy:lambda` deploy the lambda code
